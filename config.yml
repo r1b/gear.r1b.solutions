@@ -1,0 +1,93 @@
+backend:
+  name: github
+  repo: r1b/gear.r1b.solutions
+  branch: master
+
+media_folder: static/images
+public_folder: public/static
+
+collections:
+  - name: gear
+    label: Gear
+    folder: src/data/gear
+    create: true
+    slug: "{{manufacturer}}-{{model}}"
+    format: yaml
+    fields:
+      - name: manufacturer
+        label: Manufacturer
+        widget: string
+      - name: model
+        label: Model
+        widget: string
+      - name: tags
+        label: Tags
+        widget: list
+      - name: images
+        label: Images
+        widget: list
+        fields:
+          - name: file
+            label: File
+            widget: image
+          - name: caption
+            label: Caption
+            widget: markdown
+          - name: alt
+            label: Alt
+            widget: string
+
+  - name: author
+    label: Author
+    folder: src/data/authors
+    create: true
+    slug: "{{first}}-{{last}}"
+    format: yaml
+    fields:
+      - name: first
+        label: First
+        widget: string
+      - name: last
+        label: Last
+        widget: string
+      - name: bio
+        label: Bio
+        widget: markdown
+      - name: specialties
+        label: Specialties
+        widget: list
+
+  - name: listing
+    label: Listing
+    folder: src/data/listings
+    create: true
+    slug: "{{marketplace}}-{{item}}-{{neighborhood}}-{{price}}"
+    format: yaml
+    fields:
+      - name: marketplace
+        label: Marketplace
+        widget: string
+      - name: url
+        label: Url
+        widget: string
+      - name: price
+        label: Price (in dollars)
+        widget: number
+      - name: neighborhood
+        label: Neighborhood
+        widget: string
+      - name: posted
+        label: Date Posted
+        widget: datetime
+      - name: spotted
+        label: Date Spotted
+        widget: datetime
+      - name: tags
+        label: Tags
+        widget: list
+      - name: item
+        label: Item
+        widget: relation
+        collection: gear
+        searchFields: [slug, model]
+        valueField: slug
