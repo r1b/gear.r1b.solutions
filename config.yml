@@ -50,12 +50,18 @@ collections:
       - name: last
         label: Last
         widget: string
+      - name: nickname
+        label: Nickname
+        widget: string
       - name: bio
         label: Bio
         widget: markdown
       - name: specialties
         label: Specialties
         widget: list
+      - name: headshot
+        label: Headshot
+        widget: image
 
   - name: listing
     label: Listing
